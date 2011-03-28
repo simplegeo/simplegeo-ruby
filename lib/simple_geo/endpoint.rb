@@ -8,6 +8,14 @@ module SimpleGeo
         endpoint_url "features/#{id}.json"
       end
       
+      def get_layers()
+        endpoint_url "layers.json", '0.1'
+      end
+      
+      def get_layer_info(layer)
+        endpoint_url "layers/#{layer}.json", '0.1'
+      end
+      
       def record(layer, id)
         endpoint_url "records/#{layer}/#{id}.json"
       end

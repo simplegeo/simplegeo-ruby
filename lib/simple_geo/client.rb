@@ -26,6 +26,16 @@ module SimpleGeo
         @@debug
       end
 
+      def get_layers()
+          geojson_hash = get Endpoint.get_layers()
+          HashUtils.recursively_symbolize_keys geojson_hash
+      end
+
+      def get_layer_info(layer)
+          geojson_hash = get Endpoint.get_layer_info(layer)
+          HashUtils.recursively_symbolize_keys geojson_hash
+      end
+
       def add_record(record)
         raise SimpleGeoError, "Record has no layer"  if record.layer.nil?
         put Endpoint.record(record.layer, record.id), record
