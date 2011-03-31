@@ -1,10 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Client" do
-  before do
-    SimpleGeo::Client.set_credentials 'token', 'secret'
-  end
-
   context "getting a record" do
     context "with an id for an existing record" do
       before do

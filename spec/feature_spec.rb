@@ -1,10 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Client" do
-  before do
-    SimpleGeo::Client.set_credentials('token', 'secret')
-  end
-  
   it "should return a feature when requesting it using the correct handle" do
     VCR.use_cassette("feature_valid",
                     :record => :new_episodes) do

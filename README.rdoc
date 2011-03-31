@@ -45,8 +45,15 @@ For more examples see: spec/client_spec.rb
 * You're going to require rspec json oauth fakeweb, vcr and autotest (plus their dependencies)
 
 == Adding tests
-* If you want to add new tests, you will need to put a valid token and secret into a before block - similar to lines 4-6 in spec/client_spec.rb, but you'll have to enter valid credentials.
-* Look at spec/features_spec.rb for examples of how to write a vcr test. First time it runs the remote connection. After that it uses the data stored in the vcr/cassette directory. Make sure to sanitize your yml vcr files before committing them by removing your oauth token which is stored there by default.
+
+If you want to add new tests, you will need to set a valid token and secret on environment variables.
+
+Set your API keys as environment variables (see https://simplegeo.com/tokens/)
+
+* export SIMPLEGEO_TOKEN=[your key]
+* export SIMPLEGEO_SECRET=[your secret]
+
+Next, look at spec/features_spec.rb for examples of how to write a vcr test. First time it runs the remote connection. After that it uses the data stored in the vcr/cassette directory. Make sure to sanitize your yml vcr files before committing them by removing your oauth token which is stored there by default.
 
 == Copyright
 

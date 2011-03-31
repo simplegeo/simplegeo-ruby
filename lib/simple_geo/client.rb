@@ -215,7 +215,15 @@ module SimpleGeo
         @@connection.put endpoint, data
       end
     end
-
+ 
+    # Set API keys from the environment
+    
+    token, secret = [ENV['SIMPLEGEO_TOKEN'], ENV['SIMPLEGEO_SECRET']]
+    
+    if token && secret
+      self.set_credentials(token, secret)
+    end
+    
   end
 
 end

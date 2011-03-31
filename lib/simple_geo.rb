@@ -5,8 +5,8 @@ require 'oauth'
 require 'simple_geo/hash_utils'
 require 'simple_geo/connection'
 require 'simple_geo/endpoint'
-require 'simple_geo/client'
 require 'simple_geo/record'
+require 'simple_geo/context'
 
 module SimpleGeo
   API_VERSION = '1.0'.freeze
@@ -21,3 +21,5 @@ module SimpleGeo
   class DecodeError < SimpleGeoError; end
   class NoConnectionEstablished < SimpleGeoError; end
 end
+
+require 'simple_geo/client'
