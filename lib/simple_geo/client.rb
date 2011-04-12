@@ -115,11 +115,6 @@ module SimpleGeo
         nearby_records
       end
 
-      def get_nearby_address(lat, lon)
-        geojson_hash = get Endpoint.nearby_address(lat, lon)
-        HashUtils.symbolize_keys geojson_hash['properties']
-      end
-      
       def get_context(lat, lon)
         geojson_hash = get Endpoint.context(lat, lon)
         HashUtils.recursively_symbolize_keys geojson_hash
@@ -151,6 +146,9 @@ module SimpleGeo
       # q is a full-text search of place names and category is an exact match
       # to one or more of the classifiers. 
       def get_places(lat, lon, options={})
+        if (options[:category] != nil)
+            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        end
         geojson_hash = get Endpoint.places(lat, lon, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
@@ -165,47 +163,11 @@ module SimpleGeo
       end
 
       def get_places_by_ip(ip='ip', options={})
+        if (options[:category] != nil)
+            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        end
         geojson_hash = get Endpoint.places_by_ip(ip, options)
         HashUtils.recursively_symbolize_keys geojson_hash
-      end
-
-      def get_density(lat, lon, day, hour=nil)
-        geojson_hash = get Endpoint.density(lat, lon, day, hour)
-        geojson_hash = HashUtils.recursively_symbolize_keys(geojson_hash)
-        if hour.nil?
-          density_info = []
-          geojson_hash[:features].each do |hour_geojson_hash|
-            density_info << hour_geojson_hash[:properties].merge(
-              {:geometry => hour_geojson_hash[:geometry]})
-          end
-          density_info
-        else
-          geojson_hash[:properties].merge({:geometry => geojson_hash[:geometry]})
-        end
-      end
-
-      def get_overlaps(south, west, north, east, options=nil)
-        warn "[DEPRECATION] `SimpleGeo::Client.get_overlaps` is deprecated."
-        info = get Endpoint.overlaps(south, west, north, east), options
-        HashUtils.recursively_symbolize_keys(info)
-      end
-
-      # this API call seems to always return a 404
-      def get_boundary(id)
-        warn "[DEPRECATION] `SimpleGeo::Client.get_boundary` is deprecated. Use `SimpleGeo::Client.get_feature` instead."
-        info = get Endpoint.boundary(id)
-        HashUtils.recursively_symbolize_keys(info)
-      end
-
-      def get_contains(lat, lon)
-        warn "[DEPRECATION] `SimpleGeo::Client.get_contains` is deprecated. Use `SimpleGeo::Client.get_context` instead."
-        get_context(lat, lon)
-      end
-
-      def get_contains_ip_address(ip)
-        warn "[DEPRECATION] `SimpleGeo::Client.get_contains` is deprecated."
-        info = get Endpoint.contains_ip_address(ip)
-        HashUtils.recursively_symbolize_keys(info)
       end
 
       def get(endpoint, data=nil)
