@@ -157,6 +157,9 @@ module SimpleGeo
 
       def get_places_by_address(address, options={})
         address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        if (options[:category] != nil)
+            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        end
         geojson_hash = get Endpoint.places_by_address(address, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
