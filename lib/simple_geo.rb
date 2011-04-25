@@ -9,7 +9,7 @@ require 'simple_geo/client'
 require 'simple_geo/record'
 
 module SimpleGeo
-  API_VERSION = '0.1'.freeze
+  API_VERSION = '1.0'.freeze
   REALM = "http://api.simplegeo.com"
   VERSION = File.read(File.join(File.dirname(__FILE__), '..', 'VERSION'))
 
