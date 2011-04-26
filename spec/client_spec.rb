@@ -526,6 +526,21 @@ describe "Client" do
       end
     end
   end
+  
+  
+  context "with a category and a query that has more than 1 string" do
+    before do
+      stub_request :get,
+        'http://api.simplegeo.com/1.0/places/42.790311,-86.103725.json?category=Restaurant&q=Dutch+Subway',
+        :fixture_file => 'places_category_and_multiple_q.json'
+    end
+
+    it "should return a hash with the places nearby matching the name and classifiers" do
+      dutch_restaurant_places = SimpleGeo::Client.get_places(42.790311, -86.103725, :category => 'Restaurant', :q => 'Dutch+Subway')
+      dutch_restaurant_places.should == {:type=>"FeatureCollection", :features=>[{:type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[-86.089768, 42.810865]}, :properties=>{:owner=>"simplegeo", :province=>"MI", :classifiers=>[{:type=>"Food & Drink", :category=>"Restaurant", :subcategory=>""}], :tags=>[], :postcode=>"49424", :city=>"Holland", :address=>"2229 N Park Dr", :country=>"US", :name=>"Dutch Subway LLC", :phone=>"+1 616 393 7991"}, :id=>"SG_1Y0brcGA5S8IF0Phta2BwM_42.810865_-86.089768@1291805576"}], :total=>1}
+    end
+  end
+
 
 
   context "getting contains info for a set of coordinates" do

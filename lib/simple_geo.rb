@@ -7,6 +7,7 @@ require 'oauth'
 # require 'simple_geo/endpoint'
 # require 'simple_geo/client'
 # require 'simple_geo/record'
+require 'core_ext/object'
 
 module SimpleGeo
   REALM   = "http://api.simplegeo.com"
@@ -22,7 +23,6 @@ module SimpleGeo
   
   
   # LazyLoaded
-  autoload  :Object,      'core_ext/object'
   autoload  :HashUtils,   'simple_geo/hash_utils'
   autoload  :Connection,  'simple_geo/connection'
   autoload  :Endpoint,    'simple_geo/endpoint'

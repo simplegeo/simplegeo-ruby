@@ -1,0 +1,37 @@
+{
+   "total" : 1,
+   "type" : "FeatureCollection",
+   "features": [
+    {
+     "geometry": {
+      "type" : "Point",
+      "coordinates": [
+       -86.089768,
+       42.810865
+      ]
+},
+     "type" : "Feature",
+     "id" : "SG_1Y0brcGA5S8IF0Phta2BwM_42.810865_-86.089768@1291805576",
+     "properties": {
+      "province" : "MI",
+      "city" : "Holland",
+      "name" : "Dutch Subway LLC",
+      "tags": [
+       
+      ],
+"country" : "US",
+      "phone" : "+1 616 393 7991",
+      "address" : "2229 N Park Dr",
+      "owner" : "simplegeo",
+      "postcode" : "49424",
+      "classifiers": [
+       {
+        "category" : "Restaurant",
+        "type" : "Food & Drink",
+        "subcategory" : ""
+        }
+      ]
+}
+     }
+   ]
+   }
