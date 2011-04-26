@@ -21,7 +21,7 @@ Gemfile.lock
 
 ## PROJECT::SPECIFIC
 *.gem
-*.gemspec
+# *.gemspec
 
 ## RVM
 .rvmrc
