@@ -154,6 +154,7 @@ module SimpleGeo
 
       def get_places_by_address(address, options={})
         address             = escape_string(address)
+        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
         options[:category]  = escape_string(options[:category]) unless options[:category].blank?
         geojson_hash        = get Endpoint.places_by_address(address, options)
         HashUtils.recursively_symbolize_keys geojson_hash
@@ -161,6 +162,7 @@ module SimpleGeo
 
       def get_places_by_ip(ip='ip', options={})
         options[:category]  = escape_string(options[:category]) unless options[:category].blank?  
+        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
         geojson_hash        = get Endpoint.places_by_ip(ip, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
