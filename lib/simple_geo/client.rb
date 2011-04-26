@@ -189,7 +189,7 @@ module SimpleGeo
       
       
       def escape_string(option)
-        option = URI.escape(option, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        option = URI.escape(::CGI.escape(option), Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       end
       
     end

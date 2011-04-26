@@ -1,12 +1,9 @@
 require 'uri'
 require 'json'
 require 'oauth'
+require 'cgi'
 
-# require 'simple_geo/hash_utils'
-# require 'simple_geo/connection'
-# require 'simple_geo/endpoint'
-# require 'simple_geo/client'
-# require 'simple_geo/record'
+
 require 'core_ext/object'
 
 module SimpleGeo
