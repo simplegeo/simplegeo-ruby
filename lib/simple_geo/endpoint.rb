@@ -5,7 +5,7 @@ module SimpleGeo
     class << self
       
       def feature(id)
-        endpoint_url "features/#{id}.json"
+        endpoint_url "features/#{id}.json", '1.0'
       end
       
       def get_layers()
@@ -17,38 +17,34 @@ module SimpleGeo
       end
       
       def record(layer, id)
-        endpoint_url "records/#{layer}/#{id}.json"
+        endpoint_url "records/#{layer}/#{id}.json", '0.1'
       end
 
       def records(layer, ids)
          ids = ids.join(',')  if ids.is_a? Array
-         endpoint_url "records/#{layer}/#{ids}.json"
+         endpoint_url "records/#{layer}/#{ids}.json", '0.1'
       end
 
       def add_records(layer)
-        endpoint_url "records/#{layer}.json"
+        endpoint_url "records/#{layer}.json", '0.1'
       end
 
       def history(layer, id)
-        endpoint_url "records/#{layer}/#{id}/history.json"
+        endpoint_url "records/#{layer}/#{id}/history.json", '0.1'
       end
 
       def nearby_geohash(layer, geohash)
-        endpoint_url "records/#{layer}/nearby/#{geohash}.json"
+        endpoint_url "records/#{layer}/nearby/#{geohash}.json", '0.1'
       end
 
       def nearby_coordinates(layer, lat, lon)
-        endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json"
+        endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json", '0.1'
       end
 
       def nearby_ip_address(layer, ip)
-        endpoint_url "records/#{layer}/nearby/#{ip}.json"
+        endpoint_url "records/#{layer}/nearby/#{ip}.json", '0.1'
       end
 
-      def nearby_address(lat, lon)
-        endpoint_url "nearby/address/#{lat},#{lon}.json"
-      end
-      
       def context(lat, lon)
         endpoint_url "context/#{lat},#{lon}.json", '1.0'
       end
@@ -98,32 +94,7 @@ module SimpleGeo
         end
       end
 
-      def density(lat, lon, day, hour=nil)
-        if hour.nil?
-          path = "density/#{day}/#{lat},#{lon}.json"
-        else
-          path = "density/#{day}/#{hour}/#{lat},#{lon}.json"
-        end
-        endpoint_url path
-      end
-
-      def contains(lat, lon)
-        endpoint_url "contains/#{lat},#{lon}.json"
-      end
-
-      def contains_ip_address(ip)
-        endpoint_url "contains/#{ip}.json"
-      end
-
-      def overlaps(south, west, north, east)
-        endpoint_url "overlaps/#{south},#{west},#{north},#{east}.json"
-      end
-
-      def boundary(id)
-        endpoint_url "boundary/#{id}.json"
-      end
-
-      def endpoint_url(path, version = API_VERSION)
+      def endpoint_url(path, version)
         [REALM, version, path].join('/')
       end
     end
