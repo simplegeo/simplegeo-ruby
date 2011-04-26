@@ -528,7 +528,7 @@ describe "Client" do
   end
   
   
-  context "with a category and a query that has more than 1 string" do
+  context "with a category and a query that contains multiple words" do
     before do
       stub_request :get,
         'http://api.simplegeo.com/1.0/places/42.790311,-86.103725.json?category=Restaurant&q=Dutch+Subway',
