@@ -46,9 +46,9 @@ module SimpleGeo
       end
 
       def get_record(layer, id)
-        record_hash = get Endpoint.record(layer, id)
-        record = Record.parse_geojson_hash(record_hash)
-        record.layer = layer
+        record_hash   = get Endpoint.record(layer, id)
+        record        = Record.parse_geojson_hash(record_hash)
+        record.layer  = layer
         record
       end
 
@@ -121,8 +121,8 @@ module SimpleGeo
       end
       
       def get_context_by_address(address)
-        address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        geojson_hash = get Endpoint.context_by_address(address)
+        address       = escape_string(address)
+        geojson_hash  = get Endpoint.context_by_address(address)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
       
@@ -146,27 +146,22 @@ module SimpleGeo
       # q is a full-text search of place names and category is an exact match
       # to one or more of the classifiers. 
       def get_places(lat, lon, options={})
-        if (options[:category] != nil)
-            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        end
-        geojson_hash = get Endpoint.places(lat, lon, options)
+        options[:category]  = escape_string(options[:category]) unless options[:category].blank?
+        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
+        geojson_hash        = get Endpoint.places(lat, lon, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
 
       def get_places_by_address(address, options={})
-        address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        if (options[:category] != nil)
-            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        end
-        geojson_hash = get Endpoint.places_by_address(address, options)
+        address             = escape_string(address)
+        options[:category]  = escape_string(options[:category]) unless options[:category].blank?
+        geojson_hash        = get Endpoint.places_by_address(address, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
 
       def get_places_by_ip(ip='ip', options={})
-        if (options[:category] != nil)
-            options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        end
-        geojson_hash = get Endpoint.places_by_ip(ip, options)
+        options[:category]  = escape_string(options[:category]) unless options[:category].blank?  
+        geojson_hash        = get Endpoint.places_by_ip(ip, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
 
@@ -189,6 +184,12 @@ module SimpleGeo
         raise NoConnectionEstablished  if @@connection.nil?
         @@connection.put endpoint, data
       end
+      
+      
+      def escape_string(option)
+        option = URI.escape(option, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      end
+      
     end
 
   end
