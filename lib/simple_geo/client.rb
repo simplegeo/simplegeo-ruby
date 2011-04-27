@@ -148,6 +148,7 @@ module SimpleGeo
       def get_places(lat, lon, options={})
         options[:category]  = escape_string(options[:category]) unless options[:category].blank?
         options[:q]         = escape_string(options[:q])        unless options[:q].blank?
+        $stdout.puts "Query: #{options.inspect}"
         geojson_hash        = get Endpoint.places(lat, lon, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
@@ -189,7 +190,7 @@ module SimpleGeo
       
       
       def escape_string(option)
-        URI.escape(options)
+        URI.escape(options, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       end
       
     end

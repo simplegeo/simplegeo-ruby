@@ -65,6 +65,7 @@ module SimpleGeo
           options.each do |k,v|
             params << "#{k}=#{v}"
           end
+          $stdout.puts "places/#{lat},#{lon}.json?#{params.join("&")}"
           endpoint_url "places/#{lat},#{lon}.json?#{params.join("&")}", '1.0'
         end
       end
