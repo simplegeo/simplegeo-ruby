@@ -35,14 +35,14 @@ module SimpleGeo
         end
 
         if debug
-          puts "request: #{method.to_s.upcase} #{endpoint}"
-          puts "headers:"
+          $stdout.puts "request: #{method.to_s.upcase} #{endpoint}"
+          $stdout.puts "headers:"
           headers.each do |key, value|
-            puts "#{key}=#{value}"
+            $stdout.puts "#{key}=#{value}"
           end
           if [:post, :put].include?(method) && !data.nil?
-            puts "data:"
-            puts data.to_json
+            $stdout.puts "data:"
+            $stdout.puts data.to_json
           end
         end
 
@@ -55,13 +55,13 @@ module SimpleGeo
         end
 
         if debug
-          puts "\nresponse: #{response.code}"
-          puts "headers:"
+          $stdout.puts "\nresponse: #{response.code}"
+          $stdout.puts "headers:"
           response.header.each do |key, value|
-            puts "#{key}=#{value}"
+            $stdout.puts "#{key}=#{value}"
           end
-          puts "body:"
-          puts response.body
+          $stdout.puts "body:"
+          $stdout.puts response.body
         end
 
         raise_errors(response)

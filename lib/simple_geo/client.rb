@@ -148,7 +148,6 @@ module SimpleGeo
       def get_places(lat, lon, options={})
         options['category'] = escape_string(options['category']) unless options['category'].blank?
         options['q']        = escape_string(options['q'])        unless options['q'].blank?
-        $stdout.puts "Query: #{options.inspect}"
         geojson_hash        = get Endpoint.places(lat, lon, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
