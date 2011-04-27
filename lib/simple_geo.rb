@@ -1,8 +1,6 @@
 require 'uri'
 require 'json'
 require 'oauth'
-require 'cgi'
-
 
 require 'core_ext/object'
 
