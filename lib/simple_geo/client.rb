@@ -146,8 +146,8 @@ module SimpleGeo
       # q is a full-text search of place names and category is an exact match
       # to one or more of the classifiers. 
       def get_places(lat, lon, options={})
-        options[:category]  = escape_string(options[:category]) unless options[:category].blank?
-        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
+        options['category'] = escape_string(options['category']) unless options['category'].blank?
+        options['q']        = escape_string(options['q'])        unless options['q'].blank?
         $stdout.puts "Query: #{options.inspect}"
         geojson_hash        = get Endpoint.places(lat, lon, options)
         HashUtils.recursively_symbolize_keys geojson_hash
@@ -155,15 +155,15 @@ module SimpleGeo
 
       def get_places_by_address(address, options={})
         address             = escape_string(address)
-        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
-        options[:category]  = escape_string(options[:category]) unless options[:category].blank?
+        options['q']        = escape_string(options['q'])        unless options['q'].blank?
+        options['category'] = escape_string(options['category']) unless options['category'].blank?
         geojson_hash        = get Endpoint.places_by_address(address, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
 
       def get_places_by_ip(ip='ip', options={})
-        options[:category]  = escape_string(options[:category]) unless options[:category].blank?  
-        options[:q]         = escape_string(options[:q])        unless options[:q].blank?
+        options['category'] = escape_string(options['category']) unless options['category'].blank?  
+        options['q']        = escape_string(options['q'])        unless options['q'].blank?
         geojson_hash        = get Endpoint.places_by_ip(ip, options)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
