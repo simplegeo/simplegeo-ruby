@@ -8,46 +8,4 @@ For the specific documentation on APIs (and the full list of parameters) see:
 * http://simplegeo.com/docs/clients-code-libraries/ruby
 * http://simplegeo.com/docs/tutorials/ruby
 
-== Installation
-
-Open the Terminal or other UNIX shell and type:
-
-  sudo gem install simplegeo
-
-== Examples
-
-Start by requiring SimpleGeo and setting your authentication credentials:
-
-  require 'simple_geo'
-  SimpleGeo::Client.set_credentials('token', 'secret')
-  
-=== Other APIs
-
-For more examples see: spec/client_spec.rb 
-
-=== Building
-
-  rake gemspec
-  gem build simplegeo.gemspec
-
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
-
-== Running tests
-* Use rspec 2 and run "rspec spec" from the project root to run all of the specs
-* You're going to require rspec json oauth fakeweb, vcr and autotest (plus their dependencies)
-
-== Adding tests
-* If you want to add new tests, you will need to put a valid token and secret into a before block - similar to lines 4-6 in spec/client_spec.rb, but you'll have to enter valid credentials.
-* Look at spec/features_spec.rb for examples of how to write a vcr test. First time it runs the remote connection. After that it uses the data stored in the vcr/cassette directory. Make sure to sanitize your yml vcr files before committing them by removing your oauth token which is stored there by default.
-
-== Copyright
-
-Copyright (c) 2010 Dan Dofter. See LICENSE for details.
+Copyright (c) 2011 SimpleGeo Inc., Brian Ryckbost, Dan Dofter. See LICENSE for details.
