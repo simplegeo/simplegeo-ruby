@@ -12,9 +12,20 @@ module SimpleGeo
         Record.parse_geojson_hash(record_hash)
       end
 
-      def set_credentials(token, secret)
+      # If you don't supply your credentials, we assume they're set in the environment.
+      # Using the environment variables is how you would use the client on Heroku, for example.
+      def set_credentials(token=nil, secret=nil)
+        token, secret = check_credentials(token, secret)
         @@connection = Connection.new(token, secret)
         @@connection.debug = @@debug
+      end
+
+      def check_credentials(token, secret)
+        if (token.nil? and secret.nil?)
+          token=ENV['SIMPLEGEO_KEY']         
+          secret=ENV['SIMPLEGEO_SECRET']
+        end
+        return token, secret
       end
 
       def debug=(debug_flag)
