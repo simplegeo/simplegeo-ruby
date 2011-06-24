@@ -41,6 +41,10 @@ module SimpleGeo
         endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json", '0.1'
       end
 
+      def nearby_coordinates_rad(layer, lat, lon, rad)
+        endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json?radius=#{rad}", '0.1'
+      end
+
       def nearby_ip_address(layer, ip)
         endpoint_url "records/#{layer}/nearby/#{ip}.json", '0.1'
       end
