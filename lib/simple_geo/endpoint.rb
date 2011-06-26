@@ -45,16 +45,32 @@ module SimpleGeo
         endpoint_url "records/#{layer}/nearby/#{ip}.json", '0.1'
       end
 
-      def context(lat, lon)
-        endpoint_url "context/#{lat},#{lon}.json", '1.0'
+      def context(lat, lon, filter)
+        if defined?(filter)
+          endpoint_url "context/#{lat},#{lon}.json?filter=#{filter}", '1.0'
+        else
+          endpoint_url "context/#{lat},#{lon}.json", '1.0'
+        end
       end
       
-      def context_by_address(address)
-        endpoint_url "context/address.json?address=#{address}", '1.0'
+      def context_by_address(address, filter)
+        if defined?(filter)
+          endpoint_url "context/address.json?address=#{address}&filter=#{filter}", '1.0'
+        else
+          endpoint_url "context/address.json?address=#{address}", '1.0'
+        end
       end
       
-      def context_ip(ip)
-        endpoint_url "context/#{ip}.json", '1.0'
+      def context_ip(ip, filter)
+        if defined?(filter)
+          endpoint_url "context/#{ip}.json?filter=#{filter}", '1.0'
+        else
+          endpoint_url "context/#{ip}.json", '1.0'
+        end
+      end
+
+      def geocode_from_ip(ip)
+        endpoint_url "context/#{ip}.json?filter=query", '1.0'
       end
       
       def places(lat, lon, options)

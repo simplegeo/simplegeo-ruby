@@ -126,19 +126,24 @@ module SimpleGeo
         nearby_records
       end
 
-      def get_context(lat, lon)
-        geojson_hash = get Endpoint.context(lat, lon)
+      def get_context(lat, lon, filter=nil)
+        geojson_hash = get Endpoint.context(lat, lon, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
       
-      def get_context_by_address(address)
+      def get_context_by_address(address, filter=nil)
         address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-        geojson_hash = get Endpoint.context_by_address(address)
+        geojson_hash = get Endpoint.context_by_address(address, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
       
-      def get_context_ip(ip)
-        geojson_hash = get Endpoint.context_ip(ip)
+      def get_context_ip(ip, filter=nil)
+        geojson_hash = get Endpoint.context_ip(ip, filter)
+        HashUtils.recursively_symbolize_keys geojson_hash
+      end
+      
+      def geocode_from_ip(ip="ip")
+        geojson_hash = get Endpoint.geocode_from_ip(ip)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
       
