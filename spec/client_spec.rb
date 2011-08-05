@@ -9,7 +9,7 @@ describe "Client" do
     context "with an id for an existing record" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/5373629.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/5373629.json',
           :fixture_file => 'get_record.json'
       end
 
@@ -46,7 +46,7 @@ describe "Client" do
     context "with an id for a nonexistant record" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/foo.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/foo.json',
           :fixture_file => 'no_such_record.json', :status => 404
       end
 
@@ -62,7 +62,7 @@ describe "Client" do
   context "adding/updating a record" do
     before do
       stub_request :put,
-        'http://api.simplegeo.com/1.0/records/io.path.testlayer/1234.json',
+        'http://api.simplegeo.com/0.1/records/io.path.testlayer/1234.json',
         :status => 202
     end
 
@@ -86,7 +86,7 @@ describe "Client" do
   context "deleting a record" do
     before do
       stub_request :delete,
-        'http://api.simplegeo.com/1.0/records/io.path.testlayer/1234.json',
+        'http://api.simplegeo.com/0.1/records/io.path.testlayer/1234.json',
         :status => 202
     end
 
@@ -101,7 +101,7 @@ describe "Client" do
     context "with ids for two existing records" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.us.business/41531696,41530629.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.us.business/41531696,41530629.json',
           :fixture_file => 'get_records.json'
       end
 
@@ -278,7 +278,7 @@ describe "Client" do
     context "with ids for nonexistant records" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/foo,bar.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/foo,bar.json',
           :fixture_file => 'nonetype_not_iterable.json', :status => 500
       end
 
@@ -293,7 +293,7 @@ describe "Client" do
   context "adding multiple records" do
     before do
       stub_request :post,
-        'http://api.simplegeo.com/1.0/records/io.path.testlayer.json',
+        'http://api.simplegeo.com/0.1/records/io.path.testlayer.json',
         :status => 202
     end
 
@@ -330,7 +330,7 @@ describe "Client" do
   context "getting a record's history" do
     before do
       stub_request :get,
-        'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/5373629/history.json',
+        'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/5373629/history.json',
         :fixture_file => 'get_history.json'
     end
 
@@ -418,7 +418,7 @@ describe "Client" do
     context "by lat and lon" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/nearby/37.75965,-122.42608.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/nearby/37.75965,-122.42608.json',
           :fixture_file => 'get_nearby.json'
       end
 
@@ -433,7 +433,7 @@ describe "Client" do
     context "by geohash" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/nearby/9q8yy1ujcsfm.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/nearby/9q8yy1ujcsfm.json',
           :fixture_file => 'get_nearby.json'
       end
 
@@ -447,7 +447,7 @@ describe "Client" do
     context "with no nearby records" do
       before do
         stub_request :get,
-          'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/nearby/37.75965,-122.42608.json',
+          'http://api.simplegeo.com/0.1/records/com.simplegeo.global.geonames/nearby/37.75965,-122.42608.json',
           :fixture_file => 'empty_feature_collection.json'
       end
 
