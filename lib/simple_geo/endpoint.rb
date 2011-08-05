@@ -3,19 +3,19 @@ module SimpleGeo
   class Endpoint
 
     class << self
-      
+
       def feature(id)
         endpoint_url "features/#{id}.json", '1.0'
       end
-      
+
       def get_layers()
         endpoint_url "layers.json", '0.1'
       end
-      
+
       def get_layer_info(layer)
         endpoint_url "layers/#{layer}.json", '0.1'
       end
-      
+
       def record(layer, id)
         endpoint_url "records/#{layer}/#{id}.json", '0.1'
       end
@@ -72,7 +72,7 @@ module SimpleGeo
       def geocode_from_ip(ip)
         endpoint_url "context/#{ip}.json?filter=query", '1.0'
       end
-      
+
       def places(lat, lon, options)
         if options.empty?
           endpoint_url "places/#{lat},#{lon}.json", '1.0'
@@ -89,7 +89,7 @@ module SimpleGeo
         if options.empty?
           endpoint_url "places/address.json?address=#{address}", '1.0'
         else
-          params = [] 
+          params = []
           params << "address=#{address}"
           options.each do |k,v|
             params << "#{k}=#{v}"
