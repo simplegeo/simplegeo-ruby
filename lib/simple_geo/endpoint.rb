@@ -46,23 +46,23 @@ module SimpleGeo
       end
 
       def context(lat, lon, filter)
-        if defined?(filter)
+        if filter
           endpoint_url "context/#{lat},#{lon}.json?filter=#{filter}", '1.0'
         else
           endpoint_url "context/#{lat},#{lon}.json", '1.0'
         end
       end
-      
+
       def context_by_address(address, filter)
-        if defined?(filter)
+        if filter
           endpoint_url "context/address.json?address=#{address}&filter=#{filter}", '1.0'
         else
           endpoint_url "context/address.json?address=#{address}", '1.0'
         end
       end
-      
+
       def context_ip(ip, filter)
-        if defined?(filter)
+        if filter
           endpoint_url "context/#{ip}.json?filter=#{filter}", '1.0'
         else
           endpoint_url "context/#{ip}.json", '1.0'
