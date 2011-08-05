@@ -8,8 +8,8 @@ begin
     gem.summary = %Q{A SimpleGeo Ruby Client}
     gem.email = "andrew@simplegeo.com"
     gem.homepage = "https://github.com/simplegeo/simplegeo-ruby"
-    gem.authors = ["Dan Dofter", "Bryan Ryckbost", "Andrew Mager", "Peter Bell"]
-    
+    gem.authors = ["Dan Dofter", "Brian Ryckbost", "Andrew Mager", "Peter Bell"]
+
     gem.add_dependency("oauth", ">= 0.4.0")
     gem.add_dependency("json_pure")
 
