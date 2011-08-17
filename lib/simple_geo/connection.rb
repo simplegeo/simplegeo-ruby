@@ -28,7 +28,7 @@ module SimpleGeo
     private
 
       def request(method, endpoint, data)
-        headers = {'User-Agent' => "SimpleGeo Ruby Client v#{VERSION}"}
+        headers = {'User-Agent' => "SimpleGeo Ruby Client v#{SimpleGeo::VERSION}"}
 
         if [:get, :delete].include?(method) && !data.nil?
           endpoint = endpoint + '?' + build_query(data)

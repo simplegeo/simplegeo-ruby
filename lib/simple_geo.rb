@@ -7,10 +7,10 @@ require 'simple_geo/connection'
 require 'simple_geo/endpoint'
 require 'simple_geo/client'
 require 'simple_geo/record'
+require 'simple_geo/version'
 
 module SimpleGeo
   REALM = "http://api.simplegeo.com"
-  VERSION = File.read(File.join(File.dirname(__FILE__), '..', 'VERSION'))
 
   class SimpleGeoError < StandardError; end
   class Unauthorized < SimpleGeoError; end
