@@ -8,9 +8,9 @@ RSpec::Core::RakeTask.new
 task :default => :spec
 task :test => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'simple_geo/version'
-Rake::RDocTask.new do |rdoc|
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "simplegeo-ruby #{SimpleGeo::VERSION}"
   rdoc.rdoc_files.include('README*')

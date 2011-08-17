@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'fakeweb', ">= 1.2.0"
   gem.add_development_dependency 'vcr', ">= 1.6.0"
   gem.add_development_dependency 'rake', '~> 0.8'
+  gem.add_development_dependency 'rdoc'
   gem.add_runtime_dependency 'oauth', ">= 0.4.0"
   gem.add_runtime_dependency 'json_pure', ">= 0"
 
