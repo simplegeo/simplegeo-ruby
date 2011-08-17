@@ -1,9 +1,7 @@
 module SimpleGeo
-
   class Endpoint
 
     class << self
-
       def feature(id)
         endpoint_url "features/#{id}.json", '1.0'
       end

@@ -25,7 +25,7 @@ module SimpleGeo
         :created => created.to_i,
         :geometry => {
           :type => 'Point',
-          :coordinates => [ lon, lat ]
+          :coordinates => [lon, lat]
         },
         :properties => properties.merge({
           :type => type

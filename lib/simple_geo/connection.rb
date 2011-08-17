@@ -1,6 +1,5 @@
 module SimpleGeo
   class Connection
-
     attr_accessor :debug
 
     def initialize(token, secret)
@@ -99,9 +98,7 @@ module SimpleGeo
           when 502..503
             raise Unavailable, response_description
           else
-            unless response.is_a? Net::HTTPSuccess
-              raise SimpleGeoError, response_description
-            end
+            raise SimpleGeoError, response_description unless response.is_a? Net::HTTPSuccess
         end
       end
 

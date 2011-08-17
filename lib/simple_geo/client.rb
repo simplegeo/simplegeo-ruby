@@ -1,7 +1,5 @@
 module SimpleGeo
-
   class Client
-
     @@connection = nil
     @@debug = false
 
@@ -22,7 +20,7 @@ module SimpleGeo
 
       def check_credentials(token, secret)
         if (token.nil? and secret.nil?)
-          token=ENV['SIMPLEGEO_KEY']         
+          token=ENV['SIMPLEGEO_KEY']
           secret=ENV['SIMPLEGEO_SECRET']
         end
         return token, secret
@@ -130,37 +128,37 @@ module SimpleGeo
         geojson_hash = get Endpoint.context(lat, lon, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
-      
+
       def get_context_by_address(address, filter=nil)
         address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         geojson_hash = get Endpoint.context_by_address(address, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
-      
+
       def get_context_ip(ip, filter=nil)
         geojson_hash = get Endpoint.context_ip(ip, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
-      
+
       def geocode_from_ip(ip="ip")
         geojson_hash = get Endpoint.geocode_from_ip(ip)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
-      
+
       # Required
       #   lat - The latitude of the point
       #   lon - The longitude of the point
-      # 
+      #
       # Optional
       #   q - A search term. For example, q=Starbucks would return all places matching the name Starbucks.
       #   category - Filter by an exact classifier (types, categories, subcategories, tags)
       #   radius - Search by radius in kilometers. Default radius is 25km.
-      # 
+      #
       # If you provide only a q parameter it does a full-text search
-      # of the name and classifiers of a place. If you provide only the category parameter 
-      # it does a full-text search of all classifiers. If you provide q and category, 
+      # of the name and classifiers of a place. If you provide only the category parameter
+      # it does a full-text search of all classifiers. If you provide q and category,
       # q is a full-text search of place names and category is an exact match
-      # to one or more of the classifiers. 
+      # to one or more of the classifiers.
       def get_places(lat, lon, options={})
         if (options[:category] != nil)
             options[:category] = URI.escape(options[:category], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
