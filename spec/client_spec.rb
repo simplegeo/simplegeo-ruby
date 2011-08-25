@@ -15,13 +15,13 @@ describe "Client" do
 
       it "should return a single record with the correct attributes" do
         record = SimpleGeo::Client.get_record('com.simplegeo.global.geonames', 5373629)
-        record.class.should == SimpleGeo::Record
-        record.id.should == '5373629'
-        record.type.should == 'place'
-        record.layer.should == 'com.simplegeo.global.geonames'
-        record.lat.should == 37.759650000000001
-        record.lon.should == -122.42608
-        record.properties.should == {
+        record.class.should be == SimpleGeo::Record
+        record.id.should be == '5373629'
+        record.type.should be == 'place'
+        record.layer.should be == 'com.simplegeo.global.geonames'
+        record.lat.should be == 37.759650000000001
+        record.lon.should be == -122.42608
+        record.properties.should be == {
           :layer => "com.simplegeo.global.geonames",
           :elevation => "22",
           :gtopo30 => "60",
@@ -107,13 +107,13 @@ describe "Client" do
 
       it "should return an array of records with the correct attributes" do
         records = SimpleGeo::Client.get_records('com.simplegeo.us.business', ['41531696', '41530629'])
-        records.size.should == 2
-        records[0].id.should == '41530629'
-        records[0].type.should == 'place'
-        records[0].layer.should == 'com.simplegeo.us.business'
-        records[0].lat.should == 37.760350000000003
-        records[0].lon.should == -122.419043
-        records[0].properties.should == {
+        records.size.should be == 2
+        records[0].id.should be == '41530629'
+        records[0].type.should be == 'place'
+        records[0].layer.should be == 'com.simplegeo.us.business'
+        records[0].lat.should be == 37.760350000000003
+        records[0].lon.should be == -122.419043
+        records[0].properties.should be == {
           :state => "CA",
           :census_block_group => "2",
           :street_type => "St",
@@ -200,12 +200,12 @@ describe "Client" do
           :msa => "7360",
           :val_flag => "C"
         }
-        records[1].id.should == '41531696'
-        records[1].type.should == 'place'
-        records[1].layer.should == 'com.simplegeo.us.business'
-        records[1].lat.should == 37.755470000000003
-        records[1].lon.should == -122.420646
-        records[1].properties.should == {
+        records[1].id.should be == '41531696'
+        records[1].type.should be == 'place'
+        records[1].layer.should be == 'com.simplegeo.us.business'
+        records[1].lat.should be == 37.755470000000003
+        records[1].lon.should be == -122.420646
+        records[1].properties.should be == {
           :carrier_route => "C010",
           :pubdate => "2009-12-01",
           :ll_match_level => "R",
