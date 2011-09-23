@@ -6,7 +6,7 @@ require 'rspec'
 require 'fakeweb'
 require 'vcr'
 
-Rspec.configure do |config|
+RSpec.configure do |config|
 
   config.extend VCR::RSpec::Macros
 
