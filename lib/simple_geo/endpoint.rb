@@ -9,44 +9,44 @@ module SimpleGeo
       end
       
       def get_layers()
-        endpoint_url "layers.json", '0.1'
+        endpoint_url "layers.json", '1.0'
       end
       
       def get_layer_info(layer)
-        endpoint_url "layers/#{layer}.json", '0.1'
+        endpoint_url "layers/#{layer}.json", '1.0'
       end
       
       def record(layer, id)
-        endpoint_url "records/#{layer}/#{id}.json", '0.1'
+        endpoint_url "records/#{layer}/#{id}.json", '1.0'
       end
 
       def records(layer, ids)
          ids = ids.join(',')  if ids.is_a? Array
-         endpoint_url "records/#{layer}/#{ids}.json", '0.1'
+         endpoint_url "records/#{layer}/#{ids}.json", '1.0'
       end
 
       def add_records(layer)
-        endpoint_url "records/#{layer}.json", '0.1'
+        endpoint_url "records/#{layer}.json", '1.0'
       end
 
       def history(layer, id)
-        endpoint_url "records/#{layer}/#{id}/history.json", '0.1'
+        endpoint_url "records/#{layer}/#{id}/history.json", '1.0'
       end
 
       def nearby_geohash(layer, geohash)
-        endpoint_url "records/#{layer}/nearby/#{geohash}.json", '0.1'
+        endpoint_url "records/#{layer}/nearby/#{geohash}.json", '1.0'
       end
 
       def nearby_coordinates(layer, lat, lon)
-        endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json", '0.1'
+        endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json", '1.0'
       end
 
       def nearby_ip_address(layer, ip)
-        endpoint_url "records/#{layer}/nearby/#{ip}.json", '0.1'
+        endpoint_url "records/#{layer}/nearby/#{ip}.json", '1.0'
       end
 
       def context(lat, lon, filter)
-        if defined?(filter)
+        if filter
           endpoint_url "context/#{lat},#{lon}.json?filter=#{filter}", '1.0'
         else
           endpoint_url "context/#{lat},#{lon}.json", '1.0'
