@@ -12,16 +12,16 @@ describe "Client" do
           'http://api.simplegeo.com/1.0/records/com.simplegeo.global.geonames/5373629.json',
           :fixture_file => 'get_record.json'
       end
-
-      it "should return a single record with the correct attributes" do
-        record = SimpleGeo::Client.get_record('com.simplegeo.global.geonames', 5373629)
-        record.class.should == SimpleGeo::Record
-        record.id.should == '5373629'
-        record.type.should == 'place'
-        record.layer.should == 'com.simplegeo.global.geonames'
-        record.lat.should == 37.759650000000001
-        record.lon.should == -122.42608
-        record.properties.should == {
+      let(:record){ SimpleGeo::Client.get_record('com.simplegeo.global.geonames', 5373629) }
+      subject{ record }
+      
+      its(:class){ should == SimpleGeo::Record }
+      its(:id){ should == '5373629' }
+      its(:type){ should == 'place' }
+      its(:layer){ should == 'com.simplegeo.global.geonames' }
+      its(:lat){ should == 37.759650000000001 }
+      its(:lon){ should == -122.42608 }
+      its(:properties){ should == {
           :layer => "com.simplegeo.global.geonames",
           :elevation => "22",
           :gtopo30 => "60",
@@ -40,7 +40,7 @@ describe "Client" do
           :admin4 => "",
           :asciiname => "Mission Dolores Park"
         }
-      end
+      }
     end
 
     context "with an id for a nonexistant record" do
