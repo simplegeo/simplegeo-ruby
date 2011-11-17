@@ -22,8 +22,8 @@ module SimpleGeo
 
       def check_credentials(token, secret)
         if (token.nil? and secret.nil?)
-          token=ENV['SIMPLEGEO_KEY']         
-          secret=ENV['SIMPLEGEO_SECRET']
+          token  = ENV['SIMPLEGEO_KEY']
+          secret = ENV['SIMPLEGEO_SECRET']
         end
         return token, secret
       end
