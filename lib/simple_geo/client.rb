@@ -101,11 +101,14 @@ module SimpleGeo
           endpoint = Endpoint.nearby_geohash(layer, options.delete(:geohash))
         elsif options[:ip]
           endpoint = Endpoint.nearby_ip_address(layer, options.delete(:ip))
+        elsif options[:address]
+          address = escape_for_url(options.delete(:address))
+          endpoint = Endpoint.nearby_address(layer, address)
         elsif options[:lat] && options[:lon]
           endpoint = Endpoint.nearby_coordinates(layer,
             options.delete(:lat), options.delete(:lon))
         else
-          raise SimpleGeoError, "Either geohash or lat and lon is required"
+          raise SimpleGeoError, "Either geohash, ip, address, or lat and lon is required"
         end
 
         options = nil  if options.empty?
@@ -201,11 +204,11 @@ module SimpleGeo
       end
       
       private
-
+      
       def category_query_string(list)
         Array(list).map{|cat| escape_for_url(cat) }.join('&category=')
       end
-
+      
       def escape_for_url(value)
         URI.escape(value, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       end
