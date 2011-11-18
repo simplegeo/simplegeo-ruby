@@ -132,7 +132,7 @@ module SimpleGeo
       end
       
       def get_context_by_address(address, filter=nil)
-        address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        address = escape_for_url(address)
         geojson_hash = get Endpoint.context_by_address(address, filter)
         HashUtils.recursively_symbolize_keys geojson_hash
       end
@@ -168,7 +168,7 @@ module SimpleGeo
       end
 
       def get_places_by_address(address, options={})
-        address = URI.escape(address, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        address = escape_for_url(address)
         options[:category] = category_query_string(options[:category]) unless options[:category].nil?
         geojson_hash = get Endpoint.places_by_address(address, options)
         HashUtils.recursively_symbolize_keys geojson_hash
@@ -203,7 +203,11 @@ module SimpleGeo
       private
 
       def category_query_string(list)
-        Array(list).map{|cat| URI.escape(cat, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) }.join('&category=')
+        Array(list).map{|cat| escape_for_url(cat) }.join('&category=')
+      end
+
+      def escape_for_url(value)
+        URI.escape(value, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       end
     end
 
