@@ -200,6 +200,8 @@ module SimpleGeo
         @@connection.put endpoint, data
       end
       
+      private
+
       def category_query_string(list)
         Array(list).map{|cat| URI.escape(cat, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) }.join('&category=')
       end
