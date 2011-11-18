@@ -37,6 +37,10 @@ module SimpleGeo
         endpoint_url "records/#{layer}/nearby/#{geohash}.json", '0.1'
       end
 
+      def nearby_address(layer, address)
+        endpoint_url "records/#{layer}/nearby/address.json?address=#{address}", '0.1'
+      end
+
       def nearby_coordinates(layer, lat, lon)
         endpoint_url "records/#{layer}/nearby/#{lat},#{lon}.json", '0.1'
       end
