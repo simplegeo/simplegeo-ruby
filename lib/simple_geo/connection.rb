@@ -93,7 +93,7 @@ module SimpleGeo
           when 401
             raise Unauthorized
           when 404
-            raise NotFound
+            raise NotFound, "The URL provided is incorrect. #{response_description}"
           when 500
             raise ServerError, "SimpleGeo had an internal error. Please let them know. #{response_description}"
           when 502..503
